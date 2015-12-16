@@ -1,0 +1,104 @@
+int stateCount = 0;
+int state = 0;
+PImage img;
+PImage img2;
+PImage img3;
+PImage img4;
+PImage img5;
+PImage img6;
+PImage img7;
+PImage img8;
+PImage img9;
+PImage img10;
+PImage img11;
+int pressed = 0;
+int pressedState = 0;
+PVector ellipseCenter;
+  int radius;
+  float distance = 0;
+  int xPos=200;
+int xDir=1;
+void setup() {
+  size(800, 600);
+  smooth();
+  background(0);
+  noStroke();
+  loop();
+  img = loadImage("block1.gif");
+  img2 = loadImage("EvilOtto.gif");
+  img3 = loadImage("Berzerkplayer.gif");
+  img4 = loadImage("Berzerkenemy.gif");
+  img5 = loadImage("BezerkStage.png");
+  img6 = loadImage("Player_Block.gif");
+  img7 = loadImage("Tetrisback.png");
+  img8 = loadImage("Pong.png");
+  img9 = loadImage("BlueBlock.png");
+  ellipseCenter = new PVector(100, 100);
+  radius = 80;
+
+}
+
+void draw() {
+  if (state == 0) {
+    image(img7,0,0);
+    image(img9,mouseX,mouseY);
+    
+  }
+  if (state == 1) {
+  
+  background(0);
+  image(img5,0,0);
+  image(img4,100,30);
+image(img4,500,300);
+image(img4,500,30);
+  image(img2,0,0);
+  image(img3,mouseX,mouseY);
+ }
+if (state == 2) {
+    background(0);
+    image(img8,0,0);
+   ellipseMode(RADIUS);
+ strokeWeight(0);
+ 
+ ellipse(ellipseCenter.x, ellipseCenter.y, radius, radius);
+  
+ fill(255);
+ text(ellipseCenter.x +" "+ ellipseCenter.y, ellipseCenter.x, ellipseCenter.y-5);   
+ fill(0);
+ text("radius: " + radius + " (" + (ellipseCenter.x + radius) + ", " + ellipseCenter.y + ")", ellipseCenter.x + radius, ellipseCenter.y);
+ 
+ strokeWeight(10);
+ fill(0,0,255);
+ stroke(0,0,255);
+ point(mouseX, mouseY);
+ text("Mouse", mouseX, mouseY - 20);
+ text(mouseX +", "+ mouseY, mouseX, mouseY- 5);
+
+ float distance = dist( ellipseCenter.x, ellipseCenter.y, mouseX, mouseY );
+ 
+ println(distance);
+ 
+ if(distance < radius){
+
+  }
+    ellipse(xPos, 200, 40, 40);
+  xPos=xPos+xDir;
+  if (xPos>width-20 || xPos<20)
+  {
+    xDir=-xDir;
+  }
+}
+{
+}
+}
+  void display(){
+    image(img3,mouseX,mouseY);
+    
+  }
+
+void mousePressed(){
+  //everytime mouse is pressed, the states should increment 0 > 1 > 2 > 0 > 1 > 2, etc
+  stateCount++;
+  state = stateCount % 3;
+}
+  
